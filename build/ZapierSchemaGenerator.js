@@ -5,6 +5,7 @@ const Utils_1 = require("./Utils");
 const transformDate_1 = require("./transforms/transformDate");
 const transformItems_1 = require("./transforms/transformItems");
 const transformAnyOf_1 = require("./transforms/transformAnyOf");
+const transformOneOf_1 = require("./transforms/transformOneOf");
 const transformDefault_1 = require("./transforms/transformDefault");
 const transformObject_1 = require("./transforms/transformObject");
 const transformAllOf_1 = require("./transforms/transformAllOf");
@@ -58,7 +59,7 @@ class ZapierSchemaGenerator {
             return transformAnyOf_1.transformAnyOf(fieldSchema, prop, this);
         }
         else if (prop.oneOf) {
-            return transformAnyOf_1.transformAnyOf(fieldSchema, prop, this);
+            return transformOneOf_1.transformOneOf(fieldSchema, prop, this);
         }
         else if (prop.allOf) {
             return transformAllOf_1.transformAllOf(fieldSchema, prop, this);
