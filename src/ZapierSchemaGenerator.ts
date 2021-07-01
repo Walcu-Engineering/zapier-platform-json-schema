@@ -5,6 +5,7 @@ import Utils from "./Utils";
 import { transformDate } from "./transforms/transformDate";
 import { transformItems } from "./transforms/transformItems";
 import { transformAnyOf } from "./transforms/transformAnyOf";
+import { transformOneOf } from "./transforms/transformOneOf";
 import { transformDefault } from "./transforms/transformDefault";
 import { transformObject } from "./transforms/transformObject";
 import { transformAllOf } from "./transforms/transformAllOf";
