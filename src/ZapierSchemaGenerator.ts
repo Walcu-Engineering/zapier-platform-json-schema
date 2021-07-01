@@ -96,6 +96,8 @@ export default class ZapierSchemaGenerator {
       return transformObject(fieldSchema, prop, this);
     } else if (prop.anyOf) {
       return transformAnyOf(fieldSchema, prop, this);
+    } else if (prop.oneOf) {
+      return transformAnyOf(fieldSchema, prop, this);
     } else if (prop.allOf) {
       return transformAllOf(fieldSchema, prop, this);
     } else if (!prop.type) {
