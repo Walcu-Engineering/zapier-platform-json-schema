@@ -57,6 +57,9 @@ class ZapierSchemaGenerator {
         else if (prop.anyOf) {
             return transformAnyOf_1.transformAnyOf(fieldSchema, prop, this);
         }
+        else if (prop.oneOf) {
+            return transformAnyOf_1.transformAnyOf(fieldSchema, prop, this);
+        }
         else if (prop.allOf) {
             return transformAllOf_1.transformAllOf(fieldSchema, prop, this);
         }
