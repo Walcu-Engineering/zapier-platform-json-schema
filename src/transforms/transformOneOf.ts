@@ -19,7 +19,7 @@ export function transformOneOf(
     (item: Definition) => item.type !== null && item.type !== "null"
   );
 
-  if (typeToParse.length > 1) {
+  if (typeToParse.length >= 1) {
     typeToParse = typeToParse.filter(
       (item: Definition) => item.type !== "string" || item.format
     );
@@ -27,13 +27,7 @@ export function transformOneOf(
   if (typeToParse.length === 0) {
     return null;
   }
-  if (typeToParse.length > 1) {
-    // tslint:disable-next-line
-    console.warn(
-      `Skipped prop because of multiple complex types: ${JSON.stringify(prop)}`
-    );
-    return null;
-  }
+
   return generator.getFieldSchema(
     typeToParse.pop(),
     fieldSchema.key || "unknown"
