@@ -2,7 +2,7 @@ import { FieldSchema } from "../types/FieldSchema";
 import ZapierSchemaGenerator from "../ZapierSchemaGenerator";
 import { Definition } from "typescript-json-schema";
 
-export function transformAnyOf(
+export function transformOneOf(
   fieldSchema: Partial<FieldSchema>,
   prop: any,
   generator: ZapierSchemaGenerator
