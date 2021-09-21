@@ -89,7 +89,9 @@ export default class ZapierSchemaGenerator {
       fieldSchema.label = prop.title;
     }
 
-    if (prop.format === "date-time" || prop.format === "date") {
+    if (prop.format === "date-time") {
+      transformDate(fieldSchema, prop, this);
+    } else if (prop.format === "date") {
       transformDate(fieldSchema, prop, this);
     } else if (prop.type === "array") {
       return transformItems(fieldSchema, prop, this);
