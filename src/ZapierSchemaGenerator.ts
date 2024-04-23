@@ -112,6 +112,13 @@ export default class ZapierSchemaGenerator {
         this.dehydrateRefs(registry, prop)
       );
     }
+    if (current.items) {
+      if (Array.isArray(current.items)) {
+        current.items.map((item: JSONSchema) => this.dehydrateRefs(registry, item))
+      } else {
+        this.dehydrateRefs(registry, current.items)
+      }
+    }
     if (current.anyOf) {
       current.anyOf.forEach((entry: any) =>
         this.dehydrateRefs(registry, entry)
