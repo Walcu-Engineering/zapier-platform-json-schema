@@ -28,6 +28,9 @@ class ZapierSchemaGenerator {
         });
     }
     getFieldSchema(prop, key, parentKey) {
+        if (!prop) {
+            return null;
+        }
         const fieldSchema = {};
         if (prop.enum) {
             fieldSchema.choices = prop.enum;
@@ -46,7 +49,10 @@ class ZapierSchemaGenerator {
         if (prop.title) {
             fieldSchema.label = prop.title;
         }
-        if (prop.format === "date-time" || prop.format === "date") {
+        if (prop.format === "date-time") {
+            transformDate_1.transformDate(fieldSchema, prop, this);
+        }
+        else if (prop.format === "date") {
             transformDate_1.transformDate(fieldSchema, prop, this);
         }
         else if (prop.type === "array") {
@@ -75,6 +81,14 @@ class ZapierSchemaGenerator {
     dehydrateRefs(registry, current) {
         if (current.properties) {
             Object.values(current.properties).forEach((prop) => this.dehydrateRefs(registry, prop));
+        }
+        if (current.items) {
+            if (Array.isArray(current.items)) {
+                current.items.map((item) => this.dehydrateRefs(registry, item));
+            }
+            else {
+                this.dehydrateRefs(registry, current.items);
+            }
         }
         if (current.anyOf) {
             current.anyOf.forEach((entry) => this.dehydrateRefs(registry, entry));

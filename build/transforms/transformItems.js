@@ -6,7 +6,8 @@ function transformItems(fieldSchema, prop, generator) {
     if (!fieldSchema.key) {
         throw new Error(`Key must be set! ${JSON.stringify(fieldSchema)}`);
     }
-    const listType = generator.getFieldSchema(itemsType, fieldSchema.key);
+    const is_nested = ['anyOf', 'allOf'].some(k => k in itemsType) || itemsType.type === 'object';
+    const listType = generator.getFieldSchema(itemsType, is_nested ? fieldSchema.key + '.0' : fieldSchema.key);
     if (listType) {
         return Object.assign(Object.assign({}, listType), { list: true });
     }
